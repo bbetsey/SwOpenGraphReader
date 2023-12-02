@@ -15,6 +15,8 @@ public class SwOpenGraphReader {
 // MARK: - PUBLIC METHODS
 public extension SwOpenGraphReader {
     func fetch(request: URLRequest) async throws -> SwOpenGraphResponse {
+        var request = request
+        request.setValue("facebookexternalhit/1.1", forHTTPHeaderField: "User-Agent")
         let (data, response) = try await urlSession.data(for: request)
         
         guard let htmlResponse = response as? HTTPURLResponse, htmlResponse.ok else {
@@ -44,6 +46,7 @@ private extension SwOpenGraphReader {
             var result: [String: [String]] = [:]
             
             metas.forEach { meta in
+                print(meta)
                 guard let propertyName = try? meta.attr("property"),
                       let content = try? meta.attr("content")
                 else { return }
