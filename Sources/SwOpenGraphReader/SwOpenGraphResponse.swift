@@ -18,6 +18,11 @@ public struct SwOpenGraphResponse {
 // MARK: - Public Properties
 
 public extension SwOpenGraphResponse {
+    /// The icon of the site.
+    var icon: URL? {
+        urlValue(.icon)
+    }
+    
     /// The title of the OpenGraph content.
     var title: String? {
         stringValue(.title) ?? stringValue(.title2)

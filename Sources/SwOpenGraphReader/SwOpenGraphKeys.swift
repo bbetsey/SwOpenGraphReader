@@ -8,6 +8,7 @@
 import Foundation
 
 public enum SwOpenGraphKeys: String {
+    case icon = "icon"
     case title = "og:title"
     case title2 = "title"
     case type = "og:type"

@@ -43,6 +43,7 @@ private extension SwOpenGraphReader {
         do {
             let doc = try SwiftSoup.parse(html)
             let metas = try doc.select("meta")
+            let iconUrl = try doc.select("link[rel=icon]").attr("href")
             var result: [String: [String]] = [:]
             
             metas.forEach { meta in
@@ -55,6 +56,8 @@ private extension SwOpenGraphReader {
                 currentValues.append(content)
                 result.updateValue(currentValues, forKey: propertyName)
             }
+            
+            result.updateValue([iconUrl], forKey: "icon")
             
             if let title = try? doc.title() {
                 result["title"] = [title]
