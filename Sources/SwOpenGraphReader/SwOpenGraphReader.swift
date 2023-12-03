@@ -43,11 +43,11 @@ private extension SwOpenGraphReader {
         do {
             let doc = try SwiftSoup.parse(html)
             let metas = try doc.select("meta")
-            let iconUrl = try doc.select("link[rel=icon]").attr("href")
+            let iconUrl = try doc.select("link[rel=shortcut icon]").attr("href")
+            print("ICON: \(iconUrl)")
             var result: [String: [String]] = [:]
             
             metas.forEach { meta in
-                print(meta)
                 guard let propertyName = try? meta.attr("property"),
                       let content = try? meta.attr("content")
                 else { return }

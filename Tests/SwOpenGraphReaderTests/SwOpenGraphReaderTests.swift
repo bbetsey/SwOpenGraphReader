@@ -6,7 +6,7 @@ final class SwOpenGraphReaderTests: XCTestCase {
         let reader = SwOpenGraphReader()
         
         let response = try await reader.fetch(url: URL(string: "https://www.youtube.com/watch?v=A9MYXaEBu_Y")!)
-        print(response)
+//        print(response)
         XCTAssertEqual(1, 1)
     }
 }
